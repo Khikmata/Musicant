@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { ROUTES } from "./routes";
 import { ScrollRestoration } from "./utils/ScrollRestoration";
 
 const RoutesCommonOutlet = () => {
@@ -17,7 +18,13 @@ const RoutesCommonOutlet = () => {
 };
 
 const routerInstance = createBrowserRouter(
-  createRoutesFromElements(<Route element={<RoutesCommonOutlet />}></Route>)
+  createRoutesFromElements(
+    <Route element={<RoutesCommonOutlet />}>
+      {Object.values(ROUTES.PAGES).map((path) => (
+        <Route key={path} path={path} />
+      ))}
+    </Route>
+  )
 );
 
 export const Router = () => {

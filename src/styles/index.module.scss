@@ -1,0 +1,61 @@
+@import "colors.module.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --colors__primary: #{getColorVarValue("primary")};
+  --colors__fg_primary: #{getColorVarValue("fg_primary")};
+  --colors__fg_secondary: #{getColorVarValue("fg_secondary")};
+  --colors__fg_tertiary: #{getColorVarValue("fg_tertiary")};
+  --colors__fg_light_secondary: #{getColorVarValue("fg_light-secondary")};
+  --colors__fg_light_primary: #{getColorVarValue("fg_light-primary")};
+  --colors__bg_main: #{getColorVarValue("bg_main")};
+  --colors__bg_primary: #{getColorVarValue("bg_primary")};
+  --colors__bg_secondary: #{getColorVarValue("bg_secondary")};
+  --colors__bg_light_main: #{getColorVarValue("bg_light-main")};
+
+  --scroll-bar-width: 0.7rem;
+}
+
+html {
+  scrollbar-color: rgb(0 219 222 / 80%) rgb(25 25 25 / 100%);
+  scrollbar-width: thin;
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+  background-color: var(--colors__background);
+}
+
+::-webkit-scrollbar {
+  width: var(--scroll-bar-width);
+  height: 0.7rem;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar {
+  width: var(--scroll-bar-width);
+  height: 0.7rem;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--colors__background);
+  border: 0.3rem solid var(--colors__bg_secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  width: var(--scroll-bar-width);
+  height: 0.7rem;
+  background: rgb(106 106 106 / 80%);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(106 106 106 / 100%);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--colors__background);
+}
