@@ -1,0 +1,13 @@
+.link_list {
+  display: flex;
+}
+
+.link {
+  height: 100%;
+  width: 210px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4px 10px 4px 4px;
+  gap: 10px;
+}

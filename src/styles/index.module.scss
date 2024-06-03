@@ -1,4 +1,5 @@
 @import "colors.module.scss";
+@import "fonts.module.scss";
 
 * {
   margin: 0;
@@ -17,15 +18,17 @@
   --colors__bg_primary: #{getColorVarValue("bg_primary")};
   --colors__bg_secondary: #{getColorVarValue("bg_secondary")};
   --colors__bg_light_main: #{getColorVarValue("bg_light-main")};
-
   --scroll-bar-width: 0.7rem;
 }
 
 html {
+  font-family: "Satoshi";
   scrollbar-color: rgb(0 219 222 / 80%) rgb(25 25 25 / 100%);
   scrollbar-width: thin;
   font-size: 62.5%; /* 62.5% of 16px = 10px */
-  background-color: var(--colors__background);
+  background-color: var(--colors__bg_main);
+  color: var(--colors__fg_secondary);
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -41,7 +44,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--colors__background);
+  background-color: var(--colors__bg_main);
   border: 0.3rem solid var(--colors__bg_secondary);
 }
 

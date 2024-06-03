@@ -1,1 +1,1 @@
-const BASE_URL = "https://api.spotify.com/";
+export const BASE_URL = "https://api.spotify.com/";

@@ -1,7 +1,7 @@
 const PAGES = {
   HOME: "/",
-  SEARCH: "/search",
   LIBRARY: "/library",
+  SEARCH: "/search",
   TRACK: "/track",
   ALBUM: "/album",
   PLAYLIST: "/playlist",

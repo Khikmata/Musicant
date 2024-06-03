@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Outlet,
   Route,
@@ -5,8 +6,12 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { LazyLoadedPage } from "./components/LazyLoadedPage/LazyLoadedPage";
+import { PublicPageLayout } from "./components/PublicPageLayout/PublicPageLayout";
 import { ROUTES } from "./routes";
 import { ScrollRestoration } from "./utils/ScrollRestoration";
+
+const LoginPage = React.lazy(() => import("../pages/Login/LoginPage"));
 
 const RoutesCommonOutlet = () => {
   return (
@@ -21,8 +26,13 @@ const routerInstance = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RoutesCommonOutlet />}>
       {Object.values(ROUTES.PAGES).map((path) => (
-        <Route key={path} path={path} />
+        <Route
+          key={path}
+          path={path}
+          element={<LazyLoadedPage page={<PublicPageLayout />} />}
+        />
       ))}
+      <Route element={<LoginPage />} path={ROUTES.COMMON.LOGIN} />
     </Route>
   )
 );
