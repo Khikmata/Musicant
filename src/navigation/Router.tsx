@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { LazyLoadedPage } from "./components/LazyLoadedPage/LazyLoadedPage";
+import { AuthRoute } from "./components/AuthRoute/AuthRoute";
 import { PublicPageLayout } from "./components/PublicPageLayout/PublicPageLayout";
 import { ROUTES } from "./routes";
 import { ScrollRestoration } from "./utils/ScrollRestoration";
@@ -29,7 +29,11 @@ const routerInstance = createBrowserRouter(
         <Route
           key={path}
           path={path}
-          element={<LazyLoadedPage page={<PublicPageLayout />} />}
+          element={
+            <AuthRoute>
+              <PublicPageLayout />
+            </AuthRoute>
+          }
         />
       ))}
       <Route element={<LoginPage />} path={ROUTES.COMMON.LOGIN} />

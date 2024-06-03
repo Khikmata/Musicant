@@ -45,9 +45,11 @@ p {
   color: var(--colors__fg_secondary);
 }
 
-li {
+li,
+a {
   font-size: 1.4rem;
   font-family: "Satoshi";
   list-style-type: none;
   color: var(--colors__fg_secondary);
+  text-decoration: none;
 }

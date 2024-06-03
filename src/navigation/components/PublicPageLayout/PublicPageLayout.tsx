@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 import { matchRoutes, renderMatches, useLocation } from "react-router-dom";
 import HomePage from "../../../pages/HomePage/HomePage";
 import { ROUTES } from "../../routes";
+import Aside from "../Aside/Aside";
 import { LazyLoadedPage } from "../LazyLoadedPage/LazyLoadedPage";
+import { MainLayout } from "../MainLayout/MainLayout";
 import { Navbar } from "../Navbar/Navbar";
-import css from "./PublicPageLayout.module.scss";
 
 const TrackPage = React.lazy(() => import("../../../pages/Track/TrackPage"));
 const LibraryPage = React.lazy(
@@ -26,12 +27,8 @@ export const PublicPageLayout = () => {
   const mainContent = renderMatches(matchRoutes(routeList, location));
 
   return (
-    <>
-      <header className={css.header}>
-        <Navbar />
-      </header>
-      <aside className={css.aside}></aside>
+    <MainLayout headerContent={<Navbar />} asideContent={<Aside />}>
       <LazyLoadedPage page={mainContent} />
-    </>
+    </MainLayout>
   );
 };

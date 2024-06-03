@@ -1,13 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { authSlice } from "./slices/Auth/reducers";
 // ...
 
-const reducer = combineReducers({});
+const reducer = combineReducers({
+  [authSlice.name]: authSlice.reducer,
+});
 
 export const store = configureStore({
   reducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type Store = typeof store;
+export type AppDispatch = Store["dispatch"];
+export type GetState = Store["getState"];
+export type AppState = ReturnType<GetState>;
