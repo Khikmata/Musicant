@@ -1,0 +1,25 @@
+$colors: (
+  "primary": #1ed760,
+  "fg_primary": #e0e0e0,
+  "fg_secondary": #898989,
+  "fg_tertiary": #323232,
+  "fg_light_primary": #1a1a1a,
+  "fg_light_secondary": #6e6e6e,
+
+  "bg_main": #060606,
+  "bg_primary": #202020,
+  "bg_secondary": #111111,
+
+  "bg_light_main": #f0f0f0,
+);
+
+@function getColorVarValue($name) {
+  @return map-get($colors, $name);
+}
+
+//export all $colors to js like object {PRIMARY: string, SECONDARY: string....}
+:export {
+  @each $color, $value in $colors {
+    #{to-upper-case(unquote($color))}: $value;
+  }
+}

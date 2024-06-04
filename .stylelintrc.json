@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-clean-order"
+  ],
+  "rules": {
+    "scss/double-slash-comment-whitespace-inside": null,
+    "selector-pseudo-class-no-unknown": null,
+    "scss/at-function-pattern": null,
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "scss/comment-no-empty": null,
+    "color-hex-length": "long",
+    "font-family-no-missing-generic-family-keyword": null,
+    "scss/operator-no-newline-after" : null,
+    "no-descending-specificity" : null
+  }
+}

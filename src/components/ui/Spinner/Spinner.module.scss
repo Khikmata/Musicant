@@ -1,0 +1,20 @@
+.spinner {
+  width: 4.79rem;
+  height: 4.79rem;
+
+  border: 0.4rem solid var(--colors__background);
+  border-left: 0.4rem solid #575757;
+  border-radius: 50%;
+
+  animation: spin 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

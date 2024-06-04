@@ -1,0 +1,6 @@
+/.git
+/.yarn
+/tmp
+.next
+build
+node_modules
