@@ -3,12 +3,33 @@
   height: 100%;
 }
 
-.link {
+.navbar_link {
   height: 100%;
   width: 210px;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 4px 10px 4px 4px;
+  padding: 0 11px;
   gap: 10px;
+
+  &:hover {
+    svg {
+      transition: all 0.3s;
+      stroke: var(--colors__fg_primary);
+    }
+  }
+}
+
+.active {
+  color: var(--colors__fg_primary);
+  background-color: var(--colors__bg_primary);
+  svg {
+    stroke: var(--colors__fg_primary);
+    fill: var(--colors__fg_primary);
+  }
+}
+
+.asideSelected {
+  padding-left: 210px;
 }

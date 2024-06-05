@@ -21,10 +21,15 @@
   --scroll-bar-width: 0.7rem;
 }
 
+body {
+  position: relative;
+}
+
 html {
   font-family: "Satoshi";
-  scrollbar-color: rgb(0 219 222 / 80%) rgb(25 25 25 / 100%);
+  scrollbar-color: var(--colors__primary) rgb(25 25 25 / 100%);
   scrollbar-width: thin;
+  scrollbar-arrow-color: transparent;
   font-size: 62.5%; /* 62.5% of 16px = 10px */
   background-color: var(--colors__bg_main);
   color: var(--colors__fg_secondary);
@@ -51,12 +56,12 @@ html {
 ::-webkit-scrollbar-thumb {
   width: var(--scroll-bar-width);
   height: 0.7rem;
-  background: rgb(106 106 106 / 80%);
+  background: var(--colors__bg_secondary);
   border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(106 106 106 / 100%);
+  background: var(--colors__bg_secondary);
 }
 
 ::-webkit-scrollbar-corner {

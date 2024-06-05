@@ -6,9 +6,15 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import Aside from "./components/Aside/Aside";
 import { AuthRoute } from "./components/AuthRoute/AuthRoute";
-import { PublicPageLayout } from "./components/PublicPageLayout/PublicPageLayout";
+import { MainLayout } from "./components/MainLayout/MainLayout";
+import { Navbar } from "./components/Navbar/Navbar";
+
+import HomePage from "../pages/HomePage/HomePage";
+import { LazyLoadedPage } from "./components/LazyLoadedPage/LazyLoadedPage";
 import { ROUTES } from "./routes";
+import { RouteType } from "./types";
 import { ScrollRestoration } from "./utils/ScrollRestoration";
 
 const LoginPage = React.lazy(() => import("../pages/Login/LoginPage"));
@@ -22,16 +28,27 @@ const RoutesCommonOutlet = () => {
   );
 };
 
+const TrackPage = React.lazy(() => import("../pages/Track/TrackPage"));
+const LibraryPage = React.lazy(() => import("../pages/Library/LibraryPage"));
+
+const SECURED_ROUTES: RouteType[] = [
+  { path: ROUTES.PAGES.HOME, element: <HomePage /> },
+  { path: ROUTES.PAGES.TRACK, element: <TrackPage /> },
+  { path: ROUTES.PAGES.LIBRARY, element: <LibraryPage /> },
+];
+
 const routerInstance = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RoutesCommonOutlet />}>
-      {Object.values(ROUTES.PAGES).map((path) => (
+      {SECURED_ROUTES.map((route) => (
         <Route
-          key={path}
-          path={path}
+          key={route.path}
+          path={route.path}
           element={
             <AuthRoute>
-              <PublicPageLayout />
+              <MainLayout headerContent={<Navbar />} asideContent={<Aside />}>
+                <LazyLoadedPage page={route.element} />
+              </MainLayout>
             </AuthRoute>
           }
         />

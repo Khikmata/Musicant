@@ -1,10 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Icons } from "../../../assets/Icons";
+import { ListLink } from "../../../components/ui/ListLink/ListLink";
 import { cn } from "../../../styles/styles";
 import { ROUTES } from "../../routes";
 import css from "./Aside.module.scss";
 
-const ASIDE_LAYOUT = [
+export const ASIDE_LAYOUT = [
   { label: "Pins", Icon: Icons.Pins, href: ROUTES.PAGES.ALBUM },
   { label: "Playlist", Icon: Icons.Playlist, href: ROUTES.PAGES.PLAYLIST },
   { label: "Liked songs", Icon: Icons.Liked, href: ROUTES.PAGES.ALBUM },
@@ -20,19 +21,21 @@ const Aside = () => {
   const location = useLocation();
 
   const isActive = (href: string) => location.pathname === href;
+  const isAsideSelected = location.pathname.includes(
+    ROUTES.PAGES.LIBRARY || ASIDE_LAYOUT
+  );
 
   return (
-    <ul className={css.aside}>
-      {ASIDE_LAYOUT.map((node) => (
-        <li
-          key={node.label}
-          className={cn(css.aside_link, isActive(node.href) && css.active)}
-        >
-          <Link to={node.href}>
-            <node.Icon />
-            <p>{node.label}</p>
-          </Link>
-        </li>
+    <ul className={cn(css.aside, isAsideSelected && css.asideSelected)}>
+      {ASIDE_LAYOUT.map((link) => (
+        <ListLink
+          key={link.label}
+          Icon={link.Icon}
+          href={link.href}
+          label={link.label}
+          isActive={isActive(link.href)}
+          className={css.aside_link}
+        />
       ))}
     </ul>
   );

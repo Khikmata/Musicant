@@ -1,3 +1,3 @@
 export const AuthEndpoints = {
-  fetch_access_token: "/api/token",
+  fetchAccessToken: "/api/token",
 } as const;

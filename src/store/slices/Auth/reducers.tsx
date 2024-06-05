@@ -5,7 +5,6 @@ const initialAuthState: AuthState = {};
 
 const getClearAuthState = (): AuthState => ({
   accessToken: null,
-  refreshToken: null,
 });
 
 export const authSlice = createSlice({

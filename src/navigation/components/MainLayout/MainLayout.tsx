@@ -1,32 +1,25 @@
+import { useLocation } from "react-router-dom";
 import { cn } from "../../../styles/styles";
+import { LayoutType } from "../../types";
 import css from "./MainLayout.module.scss";
-interface MainLayoutProps {
-  children: React.ReactNode;
-  headerContent: React.ReactNode;
-  asideContent: React.ReactNode;
-  headerClassName?: string;
-  asideClassName?: string;
-}
 
-export const MainLayout = (props: MainLayoutProps) => {
-  const {
-    asideContent,
-    headerContent,
-    asideClassName,
-    headerClassName,
-    children,
-  } = props;
+type MainLayout = LayoutType;
+
+export const MainLayout = (props: MainLayout) => {
+  const location = useLocation();
+  const { asideContent, headerContent, children } = props;
+
   return (
-    <>
+    <div className={css.layout}>
       {headerContent && (
-        <header className={cn(css.header, headerClassName)}>
-          {headerContent}
-        </header>
+        <header className={cn(css.header)}>{headerContent}</header>
       )}
-      {asideContent && (
-        <aside className={cn(css.aside, asideContent)}>{asideContent}</aside>
-      )}
-      <main>{children}</main>
-    </>
+      <div className={css.container}>
+        {asideContent && (
+          <aside className={cn(css.aside)}>{asideContent}</aside>
+        )}
+        <main className={css.main}>{children}</main>
+      </div>
+    </div>
   );
 };

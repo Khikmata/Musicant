@@ -1,9 +1,9 @@
 import { QueryClient } from "@tanstack/react-query";
 import React from "react";
+import { queryClientConfig } from "./config/queryClient";
 import { Router } from "./navigation/Router";
+import { StoreProvider } from "./providers/StoreProvider";
 import { store } from "./store/store";
-import { StoreProvider } from "./utils/config/StoreProvider";
-import { queryClientConfig } from "./utils/config/queryClient";
 
 function App() {
   const [queryClient] = React.useState(
