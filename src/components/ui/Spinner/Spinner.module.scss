@@ -1,12 +1,12 @@
 .spinner {
-  width: 4.79rem;
-  height: 4.79rem;
+  width: 140px;
+  height: 140px;
 
-  border: 0.4rem solid var(--colors__background);
-  border-left: 0.4rem solid #575757;
+  border: 0.4rem solid var(--colors__primary);
+  border-left: 0.4rem solid var(--colors__bg_main);
   border-radius: 50%;
 
-  animation: spin 1.5s ease-in-out infinite;
+  animation: spin 1.2s ease-in-out infinite;
 }
 
 @keyframes spin {

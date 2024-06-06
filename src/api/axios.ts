@@ -9,4 +9,7 @@ export const appAxiosInstance = axios.create({
 export const authAxiosInstance = axios.create({
   baseURL: API_AUTH_BASE_URL,
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
 });
