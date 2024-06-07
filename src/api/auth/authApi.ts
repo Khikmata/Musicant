@@ -1,5 +1,5 @@
 import { authAxiosInstance } from "../axios";
-import { endpoints } from "../endpoints/endpoints";
+import { endpoints } from "../endpoints";
 import {
   FetchLoginApiRequest,
   FetchLoginApiResponse,

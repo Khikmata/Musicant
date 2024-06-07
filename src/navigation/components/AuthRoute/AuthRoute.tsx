@@ -5,7 +5,7 @@ import {
   selectAccessToken,
   selectIsAuthStateInit,
 } from "../../../store/slices/auth/selectors";
-import { fetchLogin } from "../../../store/slices/auth/thunks";
+import { redirectToAuthCodeFlowAction } from "../../../store/slices/auth/thunks";
 
 interface AuthRouteProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export const AuthRoute = ({ children }: AuthRouteProps) => {
   useEffect(() => {
     if (!isAuthStateInit || accessToken) return;
 
-    dispatch(fetchLogin());
+    redirectToAuthCodeFlowAction();
   }, [accessToken, dispatch, isAuthStateInit]);
 
   if (!isAuthStateInit || !accessToken) return <FullScreenLoader />;

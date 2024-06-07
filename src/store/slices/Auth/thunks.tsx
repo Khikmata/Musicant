@@ -1,5 +1,7 @@
-import { fetchLoginApi } from "../../../api/auth/fetchLoginApi";
+import { fetchLoginApi } from "../../../api/auth/authApi";
 import { Config } from "../../../config/env";
+import { ROUTES } from "../../../navigation/routes";
+import { getCodeChallenge, getCodeVerifier } from "../../../utils/auth";
 import {
   StorageKeys,
   deleteItemFromStorage,
@@ -13,7 +15,7 @@ import {
   resetAuthStateSuccess,
 } from "./reducers";
 
-export const getAuthDataFromStorage = async (dispatch: AppDispatch) => {
+export const getAuthDataFromStorageAction = async (dispatch: AppDispatch) => {
   try {
     const [accessToken] = await Promise.all([
       getItemFromStorage(StorageKeys.ACCESS_TOKEN),
@@ -30,7 +32,7 @@ export const getAuthDataFromStorage = async (dispatch: AppDispatch) => {
   }
 };
 
-export const resetAuthState = async (dispatch: AppDispatch) => {
+export const resetAuthStateAction = async (dispatch: AppDispatch) => {
   try {
     await Promise.all([deleteItemFromStorage(StorageKeys.ACCESS_TOKEN)]);
     dispatch(resetAuthStateSuccess());
@@ -40,7 +42,7 @@ export const resetAuthState = async (dispatch: AppDispatch) => {
   }
 };
 
-export const fetchLogin = () => async (dispatch: AppDispatch) => {
+export const fetchLoginAction = () => async (dispatch: AppDispatch) => {
   try {
     const client_id = Config.CLIENT_ID;
     const client_secret = Config.CLIENT_SECRET;
@@ -57,6 +59,43 @@ export const fetchLogin = () => async (dispatch: AppDispatch) => {
     dispatch(authSuccess({ accessToken: res.access_token }));
   } catch (e) {
     console.error("Error: fetchLoginApi", { responseError: e });
+    return e;
+  }
+};
+
+const CODE_VERIFIER_LENGTH = 128;
+
+const getRedirect_uri = () => `${window.location.origin}${ROUTES.COMMON.LOGIN}`;
+
+export const redirectToAuthCodeFlowAction = async () => {
+  try {
+    const codeVerifier = getCodeVerifier(CODE_VERIFIER_LENGTH);
+    const challengeCode = await getCodeChallenge(codeVerifier);
+
+    const url = `${Config.TARGET_AUTH_URL}/authorize`;
+
+    const searchParams = new URLSearchParams({
+      client_id: Config.CLIENT_ID ?? "",
+      response_type: "code",
+      redirect_uri: getRedirect_uri(),
+      scope: "user-read-private user-read-email",
+      code_challenge_method: "S256",
+      code_challenge: challengeCode,
+    });
+
+    const afterAuthRedirectToUri = window.location.href;
+
+    await Promise.all([
+      setItemToStorage(StorageKeys.CODE_VERIFIER, codeVerifier),
+      setItemToStorage(
+        StorageKeys.AFTER_AUTH_REDIRECT_TO_URI,
+        afterAuthRedirectToUri
+      ),
+    ]);
+
+    window.location.replace(url + "?" + searchParams);
+  } catch (e) {
+    console.error("Error: redirectToLoginPage", { responseError: e });
     return e;
   }
 };

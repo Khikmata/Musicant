@@ -1,14 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { appAxiosInstance } from "../../api/axios";
+import { fetchNewReleases } from "../../api/albums/AlbumsApi";
 import css from "./HomePage.module.scss";
 import { HomePageFilter } from "./components/HomePageFilters/HomePageFilter";
 
 const HomePage = () => {
   const { data } = useQuery({
-    queryKey: ["recommendations"],
-    queryFn: () =>
-      appAxiosInstance.get("recommendations").then((res) => res.data),
+    queryKey: ["releases"],
+    queryFn: () => fetchNewReleases({}),
   });
 
   console.log(data);

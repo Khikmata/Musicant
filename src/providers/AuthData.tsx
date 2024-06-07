@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 import { useAppDispatch } from "../hooks/redux";
-import { getAuthDataFromStorage } from "../store/slices/auth/thunks";
+import { getAuthDataFromStorageAction } from "../store/slices/auth/thunks";
 
 export const AuthData = (props: PropsWithChildren) => {
   const { children } = props;
@@ -8,7 +8,7 @@ export const AuthData = (props: PropsWithChildren) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getAuthDataFromStorage);
+    dispatch(getAuthDataFromStorageAction);
   }, [dispatch]);
 
   return <>{children}</>;

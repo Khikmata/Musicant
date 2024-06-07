@@ -1,4 +1,7 @@
 import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toastContainerConfig } from "../../../config/toast";
 import { cn } from "../../../styles/styles";
 import { LayoutType } from "../../types";
 import css from "./MainLayout.module.scss";
@@ -11,6 +14,8 @@ export const MainLayout = (props: MainLayout) => {
 
   return (
     <div className={css.layout}>
+      <ToastContainer {...toastContainerConfig} />
+
       {headerContent && (
         <header className={cn(css.header)}>{headerContent}</header>
       )}

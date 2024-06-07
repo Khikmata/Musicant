@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import { RecursiveValues } from "../utils/types";
+import { ROUTES } from "./routes";
 
 export type RouteType = {
   element: ReactNode;
@@ -12,3 +14,7 @@ export type LayoutType = {
   headerClassName?: string;
   asideClassName?: string;
 };
+
+export type PagesRoutesType =
+  | RecursiveValues<typeof ROUTES>
+  | `${RecursiveValues<typeof ROUTES>}/`;
